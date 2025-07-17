@@ -1,6 +1,6 @@
 ---
 title: "Assignment week 1"
-author: "N .Hema Sunddar"
+author: "N.Hema Sunddar"
 date: "2025-07-11"
 output: html_document
 ---
