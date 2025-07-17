@@ -1,0 +1,120 @@
+---
+title: "Assignment week 1"
+author: "N .Hema Sunddar"
+date: "2025-07-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+# INTRODUCTION
+
+#This the project of an  Week 1 assignment in R Programming of My Data Science Intership
+# at @ZenoTalent <https://www.linkedin.com/company/neozenotalent/posts/?feedView=all> with my 
+# Mentor Aishwary <https://www.linkedin.com/in/aishwarya-s-b48038223/> & This assignment helped
+#me strengthen my skills in vectors, data operations, conditional filtering, and plotting in R.
+#It was a valuable hands-on experience in applying R programming to real-world data insights.
+#In this project, I analyzed 10 weeks of average temperature data for the cities of Nellore and 
+#Vizag. The temperature values were manually gathered using #Google Weather Forecast as a reference.
+#I used R to visualize these trends through line plots, giving a clear picture of how 
+#temperatures varied week by week. To simulate real-world scenarios, I introduced a +2°C increase 
+#to the existing data—representing a heatwave—for both cities. 
+#This allowed me to compare normal and extreme temperature patterns side by side.
+
+#Nellore Temperature Trends
+#1. Creating a numeric vector containing 10 weekly average temperatures in Celsius
+temp_nlr <- c(28, 31, 33, 39, 27, 35.2, 36, 30, 32.6, 34)
+temp_nlr
+
+#2.Creating a character vector representing weeks
+week <- sprintf("Week %d", 1:10)# using namesis a formatting function in R
+#week <- sprintf("Week %02d", 1:10) #zero paddling
+#
+week
+names(temp_nlr) <- week
+temp_nlr 
+#lengthof
+weeks <- paste("Week",1:10)
+names(temp_nlr) <- weeks
+temp_nlr
+
+#3.1
+mean(temp_nlr)# Average Temperature 
+max(temp_nlr) # Maxinum Temperature
+min(temp_nlr) # Miminum Temperature
+
+#3.2 Counting number of weeks with temperature above 30 dC
+above30 <- sum(temp_nlr > 30) # using addition for seleted temperature above 30
+above30
+
+#3.3 Extracting week names where temperature is between 25dC and 35dC
+data_nlr <- names(temp_nlr[temp_nlr >= 25 & temp_nlr <= 35]) #This line filters the temp_data vector for values b/w 25°C and 35°C and extracts their corresponding week names using the names() function 
+data_nlr
+
+#4. Adding 2dC to all temperatures to simulate a heatwave
+heatwave_temp_nlr <- temp_nlr + 2 # adding 2 to the values of temp_nlr
+heatwave_temp_nlr
+
+# Vizag Temperature Trends
+#1 Creating a numeric vector containing 10 weekly average temperatures in Celsius
+temp_viz <- c(30.3, 29.5, 33.3, 35.2, 31, 37.3, 36.7, 33.8, 28, 32)
+temp_viz
+
+#2. Creating a character vector representing weeks
+names(temp_viz) <- sprintf("Week %d", 1:10)
+temp_viz
+
+#3.1
+mean(temp_viz) # Average Temperature 
+max(temp_viz) #  Maxinum Temperature
+min(temp_viz) #  Miminum Temperature
+
+#3.2 Counting number of weeks with temperature above 30 dC
+above30_viz <- sum(temp_viz > 30)
+above30_viz
+
+#3.3 Extracting week names where temperature is between 25dC and 35dC
+data_viz <- names(temp_viz[temp_viz >= 25 & temp_viz <= 35])
+data_viz
+
+#4 Adding 2dC to all temperatures to simulate a heatwave
+heatwave_temp_viz <- temp_viz + 2
+heatwave_temp_viz
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{}, echo=FALSE}
+#Heatwave simulation for Nellore 
+plotting the temperature of Nellore and Nellore Heat Waves 
+plot(heatwave_temp_nlr,type = 'o', col='red',xlab = "week", ylab = "heatwave_temp_nlr", main = "Nellore Temperature Trends of 10 Weeks")
+points(temp_nlr,type = 'o', col= 'black')
+legend("topright",c("temp_nlr","heatwave_temp_nlr"), fill=c("red","black"))
+
+#Heatwave simulation for Vizag
+plotting the temperature of Vizag and Vizag Heat Waves 
+plot(heatwave_temp_viz,type = 'o', col='green',xlab = "week", ylab = "heatwave_temp_viz", main = "Vizag Temperature Trends of 10 Weeks")
+points(temp_viz,type = 'o', col= 'blue')
+legend("topright",c("temp_viz","heatwave_temp_viz"), fill=c("green","blue"))
+
+#  Comparing Temperature Trends of Nellore and Vizag Over 10 Weeks Including Heatwave Simulation (+2°C)
+plot(heatwave_temp_nlr,type = 'o', col='red',xlab = "week", ylab = "heatwave_temp_nlr", main = "Comparing Temperature Trends of Nellore and Vizag")
+points(heatwave_temp_viz,type = 'o',col='green')
+points(temp_nlr,type = 'o', col= 'black')
+points(temp_viz,type = 'o', col= 'blue')
+legend("topleft",c("temp_nlr","heatwave_temp_nl","temp_viz","heatwave_temp_viz"), fill=c("red","black","green","blue"))
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
